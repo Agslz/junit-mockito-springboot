@@ -5,17 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a620289-bccd-4a2d-85eb-b69177e5e1ee" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/junit5-app.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ags/junit5/ejemplos/models/Cuenta.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/ags/junit5/ejemplos/models/CuentaTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ags/junit5/ejemplos/exception/DineroInsuficienteException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ags/junit5/ejemplos/models/Banco.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ags/junit5/ejemplos/models/Cuenta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ags/junit5/ejemplos/models/Cuenta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/ags/junit5/ejemplos/models/CuentaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/ags/junit5/ejemplos/models/CuentaTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ags/junit5/ejemplos/models/Cuenta.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ags/junit5/ejemplos/models/Cuenta.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/ags/junit5/ejemplos/models/CuentaTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/ags/junit5/ejemplos/models/CuentaTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +24,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -50,14 +46,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": ""
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -82,6 +78,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CuentaTest.testDebitoCuenta" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="junit5-app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ags.junit5.ejemplos.models.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ags.junit5.ejemplos.models" />
+      <option name="MAIN_CLASS_NAME" value="com.ags.junit5.ejemplos.models.CuentaTest" />
+      <option name="METHOD_NAME" value="testDebitoCuenta" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CuentaTest.testNombreCuenta" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="junit5-app" />
       <extension name="coverage">
@@ -98,10 +110,45 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CuentaTest.testRelacionBancoCuentas" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="junit5-app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ags.junit5.ejemplos.models.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ags.junit5.ejemplos.models" />
+      <option name="MAIN_CLASS_NAME" value="com.ags.junit5.ejemplos.models.CuentaTest" />
+      <option name="METHOD_NAME" value="testRelacionBancoCuentas" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CuentaTest.transferirDineroCuentas" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="junit5-app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ags.junit5.ejemplos.models.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ags.junit5.ejemplos.models" />
+      <option name="MAIN_CLASS_NAME" value="com.ags.junit5.ejemplos.models.CuentaTest" />
+      <option name="METHOD_NAME" value="transferirDineroCuentas" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.CuentaTest" />
         <item itemvalue="JUnit.CuentaTest.testNombreCuenta" />
+        <item itemvalue="JUnit.CuentaTest.testRelacionBancoCuentas" />
+        <item itemvalue="JUnit.CuentaTest.transferirDineroCuentas" />
+        <item itemvalue="JUnit.CuentaTest.testDebitoCuenta" />
       </list>
     </recent_temporary>
   </component>
