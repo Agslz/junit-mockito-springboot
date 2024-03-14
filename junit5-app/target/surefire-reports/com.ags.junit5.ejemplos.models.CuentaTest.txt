@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.ags.junit5.ejemplos.models.CuentaTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.056 s - in com.ags.junit5.ejemplos.models.CuentaTest

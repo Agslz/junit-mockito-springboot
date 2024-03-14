@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a620289-bccd-4a2d-85eb-b69177e5e1ee" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ags/junit5/ejemplos/exception/DineroInsuficienteException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ags/junit5/ejemplos/models/Banco.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/data.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ags/junit5/ejemplos/models/Cuenta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ags/junit5/ejemplos/models/Cuenta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/ags/junit5/ejemplos/models/CuentaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/ags/junit5/ejemplos/models/CuentaTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ags/junit5/ejemplos/models/Cuenta.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ags/junit5/ejemplos/models/Cuenta.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/com/ags/junit5/ejemplos/models/CuentaTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/ags/junit5/ejemplos/models/CuentaTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,7 +61,7 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.CuentaTest">
-    <configuration name="CuentaTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CuentaTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="junit5-app" />
       <extension name="coverage">
         <pattern>
@@ -78,7 +76,39 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CuentaTest.testDebitoCuenta" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CuentaTest$CuentaTestNombreYSaldo.testNombreCuenta" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="junit5-app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ags.junit5.ejemplos.models.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ags.junit5.ejemplos.models.CuentaTest" />
+      <option name="MAIN_CLASS_NAME" value="com.ags.junit5.ejemplos.models.CuentaTest$CuentaTestNombreYSaldo" />
+      <option name="METHOD_NAME" value="testNombreCuenta(org.junit.jupiter.api.TestInfo,org.junit.jupiter.api.TestReporter)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CuentaTest$PruebasParametrizadasTest.testDebitoCuentaValueSource" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="junit5-app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ags.junit5.ejemplos.models.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ags.junit5.ejemplos.models.CuentaTest" />
+      <option name="MAIN_CLASS_NAME" value="com.ags.junit5.ejemplos.models.CuentaTest$PruebasParametrizadasTest" />
+      <option name="METHOD_NAME" value="testDebitoCuentaValueSource(java.lang.String)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CuentaTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="junit5-app" />
       <extension name="coverage">
         <pattern>
@@ -88,13 +118,18 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.ags.junit5.ejemplos.models" />
       <option name="MAIN_CLASS_NAME" value="com.ags.junit5.ejemplos.models.CuentaTest" />
-      <option name="METHOD_NAME" value="testDebitoCuenta" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea -DENV=dev" />
+      <envs>
+        <env name="ENV" value="prod" />
+      </envs>
+      <tag value="cuenta" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CuentaTest.testNombreCuenta" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CuentaTest.testSaldoCuentaDev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="junit5-app" />
       <extension name="coverage">
         <pattern>
@@ -104,51 +139,26 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.ags.junit5.ejemplos.models" />
       <option name="MAIN_CLASS_NAME" value="com.ags.junit5.ejemplos.models.CuentaTest" />
-      <option name="METHOD_NAME" value="testNombreCuenta" />
+      <option name="METHOD_NAME" value="testSaldoCuentaDev" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CuentaTest.testRelacionBancoCuentas" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="junit5-app" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.ags.junit5.ejemplos.models.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.ags.junit5.ejemplos.models" />
-      <option name="MAIN_CLASS_NAME" value="com.ags.junit5.ejemplos.models.CuentaTest" />
-      <option name="METHOD_NAME" value="testRelacionBancoCuentas" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CuentaTest.transferirDineroCuentas" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="junit5-app" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.ags.junit5.ejemplos.models.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.ags.junit5.ejemplos.models" />
-      <option name="MAIN_CLASS_NAME" value="com.ags.junit5.ejemplos.models.CuentaTest" />
-      <option name="METHOD_NAME" value="transferirDineroCuentas" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+    <list>
+      <item itemvalue="JUnit.CuentaTest" />
+      <item itemvalue="JUnit.CuentaTest$CuentaTestNombreYSaldo.testNombreCuenta" />
+      <item itemvalue="JUnit.CuentaTest$PruebasParametrizadasTest.testDebitoCuentaValueSource" />
+      <item itemvalue="JUnit.CuentaTest.testSaldoCuentaDev" />
+      <item itemvalue="JUnit.CuentaTest (1)" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.CuentaTest" />
-        <item itemvalue="JUnit.CuentaTest.testNombreCuenta" />
-        <item itemvalue="JUnit.CuentaTest.testRelacionBancoCuentas" />
-        <item itemvalue="JUnit.CuentaTest.transferirDineroCuentas" />
-        <item itemvalue="JUnit.CuentaTest.testDebitoCuenta" />
+        <item itemvalue="JUnit.CuentaTest$CuentaTestNombreYSaldo.testNombreCuenta" />
+        <item itemvalue="JUnit.CuentaTest$PruebasParametrizadasTest.testDebitoCuentaValueSource" />
+        <item itemvalue="JUnit.CuentaTest (1)" />
+        <item itemvalue="JUnit.CuentaTest.testSaldoCuentaDev" />
       </list>
     </recent_temporary>
   </component>
@@ -168,7 +178,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
