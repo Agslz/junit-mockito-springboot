@@ -3,8 +3,11 @@ package com.ags.junit5.ejemplos.models;
 
 import com.ags.junit5.ejemplos.exception.DineroInsuficienteException;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.condition.*;
 
 import java.math.BigDecimal;
+import java.util.Map;
+import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,13 +18,22 @@ class CuentaTest {
     @BeforeEach
     void initMetodoTest() {
         this.cuenta = new Cuenta("Agustin", new BigDecimal("1000.12345"));
-
         System.out.println("Iniciando el metodo.");
     }
 
     @AfterEach
     void tearDown() {
         System.out.println("Finalizando metodo");
+    }
+
+    @BeforeAll
+    static void beforeAll() {
+        System.out.println("Incializando el test");
+    }
+
+    @AfterAll
+    static void afterAll() {
+        System.out.println("Terminando el test");
     }
 
     @Test
@@ -135,6 +147,62 @@ class CuentaTest {
                                 .anyMatch(cuenta -> cuenta.getPersona().equals("Andres")))
         );
 
+
+    }
+
+    @Test
+    @EnabledOnOs({OS.WINDOWS})
+    @DisplayName("Test solo en Windows")
+    void testSoloWindows() {
+
+    }
+
+    @Test
+    @EnabledOnOs({OS.MAC, OS.LINUX})
+    @DisplayName("Test solo en Mac y Windows")
+    void testSoloLinuxMac() {
+
+    }
+
+    @Test
+    @DisabledOnOs(OS.LINUX)
+    void testNoLinux() {
+
+    }
+
+    @EnabledOnJre(JRE.OTHER)
+    @Test
+    void testSolo17() {
+
+    }
+
+    @Test
+    void imprimirSystemProperties() {
+        Properties properties = System.getProperties();
+        properties.forEach((k, y) -> System.out.printf(k + ":" + y));
+    }
+
+    @Test
+    @EnabledIfSystemProperty(named = "java.version", matches = "17.0.2")
+    void testJavaVersion() {
+
+    }
+
+    @Test
+    @EnabledIfSystemProperty(named = "ENV", matches = "dev")
+    void testDev() {
+
+    }
+
+    @Test
+    void imprimirVariablesSistema() {
+        Map<String, String> getenv = System.getenv();
+        getenv.forEach((k, y )-> System.out.println(k + "" + y));
+    }
+
+    @Test
+    @EnabledIfEnvironmentVariable(named = "JAVA_HOME", matches = "/usr/bin/java")
+    void testJavaHome(){
 
     }
 }
