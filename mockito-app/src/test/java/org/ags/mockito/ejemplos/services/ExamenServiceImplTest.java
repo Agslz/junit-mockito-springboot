@@ -5,11 +5,13 @@ import org.ags.mockito.ejemplos.repositories.ExamenRepository;
 import org.ags.mockito.ejemplos.repositories.PreguntaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.mockito.*;
+import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.stubbing.Answer;
 
 import static org.mockito.Mockito.*;
 
@@ -27,6 +29,9 @@ class ExamenServiceImplTest {
     @Mock
     PreguntaRepository preguntaRepository;
 
+    @Captor
+    ArgumentCaptor<Long> captor;
+
     @InjectMocks
     ExamenServiceImpl examenService;
 
@@ -38,11 +43,29 @@ class ExamenServiceImplTest {
 //        service = new ExamenServiceImpl(repository, preguntaRepository);
     }
 
+    public static class MiArgsMatchers implements ArgumentMatcher<Long> {
+
+        private Long argument;
+
+        @Override
+        public String toString() {
+
+            return "Es para un mensaje personalizado de error que imprime mockito en caso de que falle el test" + argument + " debe ser un numero positivo";
+        }
+
+        @Override
+        public boolean matches(Long argument) {
+            this.argument = argument;
+            return argument != null && argument > 0;
+
+        }
+    }
+
     @Test
     @DisplayName("Encontar examen por nombre")
     void testFindExamenPorNombre() {
 
-        when(repository.findAll()).thenReturn(Datos.EXAMENES);
+        when(repository.findAll()).thenReturn(Datos.EXAMENES); //Cambiando las constantes podemos testear diferentes casos
         Optional<Examen> examen = examenService.findExamenPorNombre("Matematicas");
 
         assertTrue(examen.isPresent());
@@ -67,7 +90,7 @@ class ExamenServiceImplTest {
     @DisplayName("Preguntas de examen")
     void testPreguntasExamen() {
 
-        when(repository.findAll()).thenReturn(Datos.EXAMENES);
+        when(repository.findAll()).thenReturn(Datos.EXAMENES); //Cambiando las constantes podemos testear diferentes casos
         when(preguntaRepository.findPreguntasPorExamenId(anyLong())).thenReturn(Datos.PREGUNTAS);
 
         Examen examen = examenService.findExamenPorNombreConPreguntas("Matematicas");
@@ -81,7 +104,7 @@ class ExamenServiceImplTest {
     @DisplayName("Preguntas de examen con Verify")
     void testPreguntasExamenVerify() {
 
-        when(repository.findAll()).thenReturn(Datos.EXAMENES);
+        when(repository.findAll()).thenReturn(Datos.EXAMENES); //Cambiando las constantes podemos testear diferentes casos
         when(preguntaRepository.findPreguntasPorExamenId(anyLong())).thenReturn(Datos.PREGUNTAS);
 
         Examen examen = examenService.findExamenPorNombreConPreguntas("Matematicas");
@@ -97,13 +120,15 @@ class ExamenServiceImplTest {
     @DisplayName("Preguntas de no existe examen con Verify")
     void testNoExisteExamenVerify() {
 
-        when(repository.findAll()).thenReturn(Datos.EXAMENES);
+        //Given
+        when(repository.findAll()).thenReturn(Datos.EXAMENES); //Cambiando las constantes podemos testear diferentes casos
         when(preguntaRepository.findPreguntasPorExamenId(anyLong())).thenReturn(Datos.PREGUNTAS);
 
+        //When
         Examen examen = examenService.findExamenPorNombreConPreguntas("Matematicas");
 
-        assertNull(examen);
-
+        //Then
+        assertNotNull(examen);
         verify(repository).findAll();
         verify(preguntaRepository).findPreguntasPorExamenId(5L);
     }
@@ -112,16 +137,103 @@ class ExamenServiceImplTest {
     @DisplayName("Guardar examen")
     void testGuardarExamen() {
 
+        //Given
         Examen newExamen = Datos.EXAMEN;
-        newExamen.setPreguntas(Datos.PREGUNTAS);
+        newExamen.setPreguntas(Datos.PREGUNTAS); //Cambiando las constantes podemos testear diferentes casos
 
-        when(repository.guardar(any(Examen.class))).thenReturn(Datos.EXAMEN);
+        when(repository.guardar(any(Examen.class))).then(new Answer<Examen>() {
+            Long secuencia = 8L;
+
+            @Override
+            public Examen answer(InvocationOnMock invocationOnMock) throws Throwable {
+
+                Examen examen = invocationOnMock.getArgument(0);
+
+                examen.setId(secuencia++);
+                return examen;
+            }
+
+        });
+
+        //When
         Examen examen = examenService.guardar(newExamen);
+
+        //Then
         assertNotNull(examen.getId());
         assertEquals(8L, examen.getId());
         assertEquals("Fisica", examen.getNombre());
 
         verify(repository).guardar(any(Examen.class));
         verify(preguntaRepository).guardarVariasPreguntas(anyList());
+    }
+
+    @Test
+    @DisplayName("Manejo de excepciones")
+    void testManejoExceptions() {
+        //Given
+        when(repository.findAll()).thenReturn(Datos.EXAMENES_ID_NULL); //Cambiando las constantes podemos testear diferentes casos
+        when(preguntaRepository.findPreguntasPorExamenId(isNull())).thenThrow(IllegalArgumentException.class);
+        //When
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            examenService.findExamenPorNombreConPreguntas("Matematicas");
+        });
+        //Then
+        assertEquals(IllegalArgumentException.class, exception.getClass());
+        verify(repository).findAll();
+        verify(preguntaRepository).findPreguntasPorExamenId(isNull());
+    }
+
+    @Test
+    @DisplayName("Argumentos correctos")
+    void testArgumentsMatchers() {
+        //Given
+        when(repository.findAll()).thenReturn(Datos.EXAMENES); //Cambiando las constantes podemos testear diferentes casos
+        when(preguntaRepository.findPreguntasPorExamenId(anyLong())).thenReturn(Datos.PREGUNTAS);
+        examenService.findExamenPorNombreConPreguntas("Matematicas");
+
+        verify(repository).findAll();
+        //verify(preguntaRepository).findPreguntasPorExamenId(argThat(arg -> arg != null && arg.equals(5L)));
+        //verify(preguntaRepository).findPreguntasPorExamenId(eq(5L));
+        verify(preguntaRepository).findPreguntasPorExamenId(argThat(arg -> arg != null && arg >= 5L));
+
+    }
+
+    @Test
+    @DisplayName("Argumentos correctos por metodo")
+    void testArgumentsMatchersPorMetodo() {
+        //Given
+        when(repository.findAll()).thenReturn(Datos.EXAMENES); //Cambiando las constantes podemos testear diferentes casos
+        when(preguntaRepository.findPreguntasPorExamenId(anyLong())).thenReturn(Datos.PREGUNTAS);
+        examenService.findExamenPorNombreConPreguntas("Matematicas");
+
+        verify(repository).findAll();
+        verify(preguntaRepository).findPreguntasPorExamenId(argThat(new MiArgsMatchers()));
+
+    }
+
+    @Test
+    @DisplayName("Argumentos correctos por lambdas")
+    void testArgumentsMatchersPorLambdas() {
+        //Given
+        when(repository.findAll()).thenReturn(Datos.EXAMENES); //Cambiando las constantes podemos testear diferentes casos
+        when(preguntaRepository.findPreguntasPorExamenId(anyLong())).thenReturn(Datos.PREGUNTAS);
+        examenService.findExamenPorNombreConPreguntas("Matematicas");
+
+        verify(repository).findAll();
+        verify(preguntaRepository).findPreguntasPorExamenId(argThat((argument) -> argument != null && argument > 0));
+
+    }
+
+    @Test
+    @DisplayName("Capturar argumento")
+    void testArgumentCapture() {
+        when(repository.findAll()).thenReturn(Datos.EXAMENES);
+//        when(preguntaRepository.findPreguntasPorExamenId(anyLong())).thenReturn(Datos.PREGUNTAS);
+        examenService.findExamenPorNombreConPreguntas("Matematicas");
+
+//        ArgumentCaptor<Long> captor = ArgumentCaptor.forClass(Long.class);
+
+        verify(preguntaRepository).findPreguntasPorExamenId(captor.capture());
+        assertEquals(5L, captor.getValue());
     }
 }
