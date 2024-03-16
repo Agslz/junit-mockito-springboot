@@ -1,4 +1,4 @@
-package org.ags.mockito.ejemplos.services;
+package org.ags.mockito.ejemplos;
 
 import org.ags.mockito.ejemplos.models.Examen;
 

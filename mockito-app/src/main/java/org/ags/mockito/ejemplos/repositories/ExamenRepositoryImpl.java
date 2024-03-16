@@ -1,24 +1,27 @@
 package org.ags.mockito.ejemplos.repositories;
 
+import org.ags.mockito.ejemplos.Datos;
 import org.ags.mockito.ejemplos.models.Examen;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class ExamenRepositoryOtro implements ExamenRepository{
+public class ExamenRepositoryImpl implements ExamenRepository {
 
     @Override
     public Examen guardar(Examen examen) {
-        return null;
+        System.out.println("ExamenRepositoryImpl.guardar");
+        return Datos.EXAMEN;
     }
 
     @Override
     public List<Examen> findAll() {
-        try{
+        System.out.println("ExamenRepositoryImpl.findAll");
+        try {
             TimeUnit.SECONDS.sleep(5);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-    return null;
+        return Datos.EXAMENES;
     }
 }
