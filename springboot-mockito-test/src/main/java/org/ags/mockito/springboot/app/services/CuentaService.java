@@ -10,9 +10,9 @@ public interface CuentaService {
 
     int revisarTotalTransferencias(Long bancoId);
 
-    BigDecimal revisarSalgo(Long cuentaId);
+    BigDecimal revisarSaldo(Long cuentaId);
 
-    void transferir(Long numeroCuentaOrigen, Long numCuentaDestino, BigDecimal monto);
+    void transferir(Long numeroCuentaOrigen, Long numCuentaDestino, BigDecimal monto, Long bancoId);
 
 
 }
