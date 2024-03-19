@@ -14,7 +14,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
-public class IntegracionJpaTest {
+public class  IntegracionJpaTest {
     @Autowired
     CuentaRepository cuentaRepository;
 
