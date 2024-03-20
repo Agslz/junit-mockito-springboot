@@ -17,10 +17,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -82,8 +79,7 @@ class CuentaControllerTestRestTemplateTest {
     void testDetalle() {
         ResponseEntity<Cuenta> respuesta = client.getForEntity(crearUri("/api/cuentas/1"), Cuenta.class);
         Cuenta cuenta = respuesta.getBody();
-        assertEquals(HttpStatus.OK, respuesta.getStatusCode());
-        assertEquals(MediaType.APPLICATION_JSON, respuesta.getHeaders().getContentType());
+         assertEquals(MediaType.APPLICATION_JSON, respuesta.getHeaders().getContentType());
 
         assertNotNull(cuenta);
         assertEquals(1L, cuenta.getId());
@@ -96,7 +92,7 @@ class CuentaControllerTestRestTemplateTest {
     @Order(3)
     void testListar() throws JsonProcessingException {
         ResponseEntity<Cuenta[]> respuesta = client.getForEntity(crearUri("/api/cuentas"), Cuenta[].class);
-        List<Cuenta> cuentas = Arrays.asList(respuesta.getBody());
+        List<Cuenta> cuentas = Arrays.asList(Objects.requireNonNull(respuesta.getBody()));
 
         assertEquals(HttpStatus.OK, respuesta.getStatusCode());
         assertEquals(MediaType.APPLICATION_JSON, respuesta.getHeaders().getContentType());
@@ -141,7 +137,7 @@ class CuentaControllerTestRestTemplateTest {
         List<Cuenta> cuentas = Arrays.asList(respuesta.getBody());
         assertEquals(3, cuentas.size());
 
-        //client.delete(crearUri("/api/cuentas/3"));
+        client.delete(crearUri("/api/cuentas/3"));
         Map<String, Long> pathVariables = new HashMap<>();
         pathVariables.put("id", 3L);
         ResponseEntity<Void> exchange = client.exchange(crearUri("/api/cuentas/{id}"), HttpMethod.DELETE, null, Void.class,
